@@ -1,0 +1,1471 @@
+2022-06-15 22:09:16,126 ERROR frappe Could not take error snapshot: (1698, "Access denied for user '_a748bd1183d03d37'@'localhost'")
+Site: mysite.com
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: -7229155398260880086
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 55, in application
+    init_request(request)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 132, in init_request
+    frappe.local.http_request = frappe.auth.HTTPRequest()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 37, in __init__
+    self.set_session()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 74, in set_session
+    frappe.local.login_manager = LoginManager()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 130, in __init__
+    self.make_session(resume=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 214, in make_session
+    frappe.local.session_obj = Session(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 231, in __init__
+    self.resume()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 303, in resume
+    validate_ip_address(self.user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 420, in validate_ip_address
+    frappe.get_cached_value("User", user, user_fields, as_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1114, in get_cached_value
+    doc = get_cached_doc(doctype, name, _allow_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1061, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1148, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/document.py", line 72, in get_doc
+    controller = get_controller(doctype)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 80, in get_controller
+    return _get_controller()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 48, in _get_controller
+    module_name, custom = frappe.db.get_value(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 431, in get_value
+    result = self.get_values(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 529, in get_values
+    out = self._get_values_from_table(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 758, in _get_values_from_table
+    query = self.query.get_sql(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 366, in get_sql
+    criterion = self.build_conditions(table, filters, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 353, in build_conditions
+    criterion = self.dict_query(filters=filters, table=table, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 313, in dict_query
+    _operator = self.OPERATOR_MAP["="]
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1698, "Access denied for user '_a748bd1183d03d37'@'localhost'")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: -7229155398260880086
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 36, in make_error_snapshot
+    snapshot = get_snapshot(exception)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 93, in get_snapshot
+    vars = cgitb.scanvars(reader, frame, locals)
+  File "/usr/lib/python3.8/cgitb.py", line 88, in scanvars
+    value = getattr(parent, token, __UNDEF__)
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1698, "Access denied for user '_a748bd1183d03d37'@'localhost'")
+2022-06-16 10:19:07,678 ERROR frappe Could not take error snapshot: (1698, "Access denied for user '_a748bd1183d03d37'@'localhost'")
+Site: mysite.com
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: -1925298919804465270
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 55, in application
+    init_request(request)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 132, in init_request
+    frappe.local.http_request = frappe.auth.HTTPRequest()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 37, in __init__
+    self.set_session()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 74, in set_session
+    frappe.local.login_manager = LoginManager()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 130, in __init__
+    self.make_session(resume=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 214, in make_session
+    frappe.local.session_obj = Session(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 231, in __init__
+    self.resume()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 303, in resume
+    validate_ip_address(self.user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 420, in validate_ip_address
+    frappe.get_cached_value("User", user, user_fields, as_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1114, in get_cached_value
+    doc = get_cached_doc(doctype, name, _allow_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1061, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1148, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/document.py", line 72, in get_doc
+    controller = get_controller(doctype)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 80, in get_controller
+    return _get_controller()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 48, in _get_controller
+    module_name, custom = frappe.db.get_value(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 431, in get_value
+    result = self.get_values(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 529, in get_values
+    out = self._get_values_from_table(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 758, in _get_values_from_table
+    query = self.query.get_sql(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 366, in get_sql
+    criterion = self.build_conditions(table, filters, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 353, in build_conditions
+    criterion = self.dict_query(filters=filters, table=table, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 313, in dict_query
+    _operator = self.OPERATOR_MAP["="]
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1698, "Access denied for user '_a748bd1183d03d37'@'localhost'")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: -1925298919804465270
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 36, in make_error_snapshot
+    snapshot = get_snapshot(exception)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 93, in get_snapshot
+    vars = cgitb.scanvars(reader, frame, locals)
+  File "/usr/lib/python3.8/cgitb.py", line 88, in scanvars
+    value = getattr(parent, token, __UNDEF__)
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1698, "Access denied for user '_a748bd1183d03d37'@'localhost'")
+2022-06-16 10:29:10,748 ERROR frappe Could not take error snapshot: (1698, "Access denied for user '_a748bd1183d03d37'@'localhost'")
+Site: mysite.com
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 8988291934627227390
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 55, in application
+    init_request(request)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 132, in init_request
+    frappe.local.http_request = frappe.auth.HTTPRequest()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 37, in __init__
+    self.set_session()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 74, in set_session
+    frappe.local.login_manager = LoginManager()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 130, in __init__
+    self.make_session(resume=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 214, in make_session
+    frappe.local.session_obj = Session(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 231, in __init__
+    self.resume()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 303, in resume
+    validate_ip_address(self.user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 420, in validate_ip_address
+    frappe.get_cached_value("User", user, user_fields, as_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1114, in get_cached_value
+    doc = get_cached_doc(doctype, name, _allow_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1061, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1148, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/document.py", line 72, in get_doc
+    controller = get_controller(doctype)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 80, in get_controller
+    return _get_controller()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 48, in _get_controller
+    module_name, custom = frappe.db.get_value(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 431, in get_value
+    result = self.get_values(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 529, in get_values
+    out = self._get_values_from_table(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 758, in _get_values_from_table
+    query = self.query.get_sql(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 366, in get_sql
+    criterion = self.build_conditions(table, filters, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 353, in build_conditions
+    criterion = self.dict_query(filters=filters, table=table, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 313, in dict_query
+    _operator = self.OPERATOR_MAP["="]
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1698, "Access denied for user '_a748bd1183d03d37'@'localhost'")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 8988291934627227390
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 36, in make_error_snapshot
+    snapshot = get_snapshot(exception)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 93, in get_snapshot
+    vars = cgitb.scanvars(reader, frame, locals)
+  File "/usr/lib/python3.8/cgitb.py", line 88, in scanvars
+    value = getattr(parent, token, __UNDEF__)
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1698, "Access denied for user '_a748bd1183d03d37'@'localhost'")
+2022-06-16 10:52:37,050 ERROR frappe Could not take error snapshot: (1698, "Access denied for user '_a748bd1183d03d37'@'localhost'")
+Site: mysite.com
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 895487169493833494
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 55, in application
+    init_request(request)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 132, in init_request
+    frappe.local.http_request = frappe.auth.HTTPRequest()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 37, in __init__
+    self.set_session()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 74, in set_session
+    frappe.local.login_manager = LoginManager()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 130, in __init__
+    self.make_session(resume=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 214, in make_session
+    frappe.local.session_obj = Session(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 231, in __init__
+    self.resume()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 303, in resume
+    validate_ip_address(self.user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 420, in validate_ip_address
+    frappe.get_cached_value("User", user, user_fields, as_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1114, in get_cached_value
+    doc = get_cached_doc(doctype, name, _allow_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1061, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1148, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/document.py", line 72, in get_doc
+    controller = get_controller(doctype)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 80, in get_controller
+    return _get_controller()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 48, in _get_controller
+    module_name, custom = frappe.db.get_value(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 431, in get_value
+    result = self.get_values(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 529, in get_values
+    out = self._get_values_from_table(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 758, in _get_values_from_table
+    query = self.query.get_sql(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 366, in get_sql
+    criterion = self.build_conditions(table, filters, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 353, in build_conditions
+    criterion = self.dict_query(filters=filters, table=table, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 313, in dict_query
+    _operator = self.OPERATOR_MAP["="]
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1698, "Access denied for user '_a748bd1183d03d37'@'localhost'")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 895487169493833494
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 36, in make_error_snapshot
+    snapshot = get_snapshot(exception)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 93, in get_snapshot
+    vars = cgitb.scanvars(reader, frame, locals)
+  File "/usr/lib/python3.8/cgitb.py", line 88, in scanvars
+    value = getattr(parent, token, __UNDEF__)
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1698, "Access denied for user '_a748bd1183d03d37'@'localhost'")
+2022-06-16 12:49:47,586 ERROR frappe Could not take error snapshot: (1045, "Access denied for user '_a748bd1183d03d37'@'localhost' (using password: YES)")
+Site: mysite.com
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 8734923848295021714
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 55, in application
+    init_request(request)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 132, in init_request
+    frappe.local.http_request = frappe.auth.HTTPRequest()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 37, in __init__
+    self.set_session()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 74, in set_session
+    frappe.local.login_manager = LoginManager()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 130, in __init__
+    self.make_session(resume=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 214, in make_session
+    frappe.local.session_obj = Session(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 231, in __init__
+    self.resume()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 303, in resume
+    validate_ip_address(self.user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 420, in validate_ip_address
+    frappe.get_cached_value("User", user, user_fields, as_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1114, in get_cached_value
+    doc = get_cached_doc(doctype, name, _allow_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1061, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1148, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/document.py", line 72, in get_doc
+    controller = get_controller(doctype)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 80, in get_controller
+    return _get_controller()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 48, in _get_controller
+    module_name, custom = frappe.db.get_value(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 431, in get_value
+    result = self.get_values(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 529, in get_values
+    out = self._get_values_from_table(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 758, in _get_values_from_table
+    query = self.query.get_sql(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 366, in get_sql
+    criterion = self.build_conditions(table, filters, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 353, in build_conditions
+    criterion = self.dict_query(filters=filters, table=table, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 313, in dict_query
+    _operator = self.OPERATOR_MAP["="]
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user '_a748bd1183d03d37'@'localhost' (using password: YES)")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 8734923848295021714
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 36, in make_error_snapshot
+    snapshot = get_snapshot(exception)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 93, in get_snapshot
+    vars = cgitb.scanvars(reader, frame, locals)
+  File "/usr/lib/python3.8/cgitb.py", line 88, in scanvars
+    value = getattr(parent, token, __UNDEF__)
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user '_a748bd1183d03d37'@'localhost' (using password: YES)")
+2022-06-16 12:54:45,385 ERROR frappe Could not take error snapshot: (1045, "Access denied for user '_a748bd1183d03d37'@'localhost' (using password: YES)")
+Site: mysite.com
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: -8833263522647055820
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 55, in application
+    init_request(request)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 132, in init_request
+    frappe.local.http_request = frappe.auth.HTTPRequest()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 37, in __init__
+    self.set_session()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 74, in set_session
+    frappe.local.login_manager = LoginManager()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 130, in __init__
+    self.make_session(resume=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 214, in make_session
+    frappe.local.session_obj = Session(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 231, in __init__
+    self.resume()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 303, in resume
+    validate_ip_address(self.user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 420, in validate_ip_address
+    frappe.get_cached_value("User", user, user_fields, as_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1114, in get_cached_value
+    doc = get_cached_doc(doctype, name, _allow_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1061, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1148, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/document.py", line 72, in get_doc
+    controller = get_controller(doctype)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 80, in get_controller
+    return _get_controller()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 48, in _get_controller
+    module_name, custom = frappe.db.get_value(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 431, in get_value
+    result = self.get_values(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 529, in get_values
+    out = self._get_values_from_table(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 758, in _get_values_from_table
+    query = self.query.get_sql(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 366, in get_sql
+    criterion = self.build_conditions(table, filters, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 353, in build_conditions
+    criterion = self.dict_query(filters=filters, table=table, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 313, in dict_query
+    _operator = self.OPERATOR_MAP["="]
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user '_a748bd1183d03d37'@'localhost' (using password: YES)")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: -8833263522647055820
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 36, in make_error_snapshot
+    snapshot = get_snapshot(exception)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 93, in get_snapshot
+    vars = cgitb.scanvars(reader, frame, locals)
+  File "/usr/lib/python3.8/cgitb.py", line 88, in scanvars
+    value = getattr(parent, token, __UNDEF__)
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user '_a748bd1183d03d37'@'localhost' (using password: YES)")
+2022-06-16 13:14:07,612 ERROR frappe Could not take error snapshot: (1045, "Access denied for user '_a748bd1183d03d37'@'localhost' (using password: YES)")
+Site: mysite.com
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: -7878678717644153672
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 55, in application
+    init_request(request)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 132, in init_request
+    frappe.local.http_request = frappe.auth.HTTPRequest()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 37, in __init__
+    self.set_session()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 74, in set_session
+    frappe.local.login_manager = LoginManager()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 130, in __init__
+    self.make_session(resume=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 214, in make_session
+    frappe.local.session_obj = Session(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 231, in __init__
+    self.resume()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 303, in resume
+    validate_ip_address(self.user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 420, in validate_ip_address
+    frappe.get_cached_value("User", user, user_fields, as_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1114, in get_cached_value
+    doc = get_cached_doc(doctype, name, _allow_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1061, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1148, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/document.py", line 72, in get_doc
+    controller = get_controller(doctype)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 80, in get_controller
+    return _get_controller()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 48, in _get_controller
+    module_name, custom = frappe.db.get_value(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 431, in get_value
+    result = self.get_values(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 529, in get_values
+    out = self._get_values_from_table(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 758, in _get_values_from_table
+    query = self.query.get_sql(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 366, in get_sql
+    criterion = self.build_conditions(table, filters, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 353, in build_conditions
+    criterion = self.dict_query(filters=filters, table=table, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 313, in dict_query
+    _operator = self.OPERATOR_MAP["="]
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user '_a748bd1183d03d37'@'localhost' (using password: YES)")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: -7878678717644153672
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 36, in make_error_snapshot
+    snapshot = get_snapshot(exception)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 93, in get_snapshot
+    vars = cgitb.scanvars(reader, frame, locals)
+  File "/usr/lib/python3.8/cgitb.py", line 88, in scanvars
+    value = getattr(parent, token, __UNDEF__)
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user '_a748bd1183d03d37'@'localhost' (using password: YES)")
+2022-06-16 13:20:34,529 ERROR frappe Could not take error snapshot: (1045, "Access denied for user '_a748bd1183d03d37'@'localhost' (using password: YES)")
+Site: mysite.com
+Form Dict: {}
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5246148316934679312
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 55, in application
+    init_request(request)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/app.py", line 132, in init_request
+    frappe.local.http_request = frappe.auth.HTTPRequest()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 37, in __init__
+    self.set_session()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 74, in set_session
+    frappe.local.login_manager = LoginManager()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 130, in __init__
+    self.make_session(resume=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 214, in make_session
+    frappe.local.session_obj = Session(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 231, in __init__
+    self.resume()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/sessions.py", line 303, in resume
+    validate_ip_address(self.user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/auth.py", line 420, in validate_ip_address
+    frappe.get_cached_value("User", user, user_fields, as_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1114, in get_cached_value
+    doc = get_cached_doc(doctype, name, _allow_dict=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1061, in get_cached_doc
+    doc = get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1148, in get_doc
+    doc = frappe.model.document.get_doc(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/document.py", line 72, in get_doc
+    controller = get_controller(doctype)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 80, in get_controller
+    return _get_controller()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/model/base_document.py", line 48, in _get_controller
+    module_name, custom = frappe.db.get_value(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 431, in get_value
+    result = self.get_values(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 529, in get_values
+    out = self._get_values_from_table(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 758, in _get_values_from_table
+    query = self.query.get_sql(
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 366, in get_sql
+    criterion = self.build_conditions(table, filters, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 353, in build_conditions
+    criterion = self.dict_query(filters=filters, table=table, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 313, in dict_query
+    _operator = self.OPERATOR_MAP["="]
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user '_a748bd1183d03d37'@'localhost' (using password: YES)")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5740354900026072187
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 55, in wrapper
+    return frappe.local.request_cache[func][args_key]
+KeyError: 5246148316934679312
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 36, in make_error_snapshot
+    snapshot = get_snapshot(exception)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/error.py", line 93, in get_snapshot
+    vars = cgitb.scanvars(reader, frame, locals)
+  File "/usr/lib/python3.8/cgitb.py", line 88, in scanvars
+    value = getattr(parent, token, __UNDEF__)
+  File "/usr/lib/python3.8/functools.py", line 967, in __get__
+    val = self.func(instance)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/query.py", line 180, in OPERATOR_MAP
+    additional_filters_config = get_additional_filters_from_hooks()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/boot.py", line 361, in get_additional_filters_from_hooks
+    filter_hooks = frappe.get_hooks("filters_config")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1442, in get_hooks
+    hooks = _dict(cache().get_value("app_hooks", _load_app_hooks))
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/redis_wrapper.py", line 81, in get_value
+    val = generator()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1407, in _load_app_hooks
+    apps = [app_name] if app_name else get_installed_apps(sort=True)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/utils/caching.py", line 57, in wrapper
+    return_val = func(*args, **kwargs)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/__init__.py", line 1374, in get_installed_apps
+    installed = json.loads(db.get_global("installed_apps") or "[]")
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 917, in get_global
+    return self.get_default(key, user)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 921, in get_default
+    d = self.get_defaults(key, parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 938, in get_defaults
+    defaults = frappe.defaults.get_defaults(parent)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 88, in get_defaults
+    globald = get_defaults_for()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/defaults.py", line 218, in get_defaults_for
+    frappe.qb.from_(table)
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/query_builder/utils.py", line 70, in execute_query
+    return frappe.db.sql(query, params, *args, **kwargs)  # nosemgrep
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 161, in sql
+    self.connect()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/database.py", line 93, in connect
+    self._conn = self.get_connection()
+  File "/home/linux2004/frappe-bench/apps/frappe/frappe/database/mariadb/database.py", line 88, in get_connection
+    conn = pymysql.connect(
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 353, in __init__
+    self.connect()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 633, in connect
+    self._request_authentication()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/home/linux2004/frappe-bench/env/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user '_a748bd1183d03d37'@'localhost' (using password: YES)")
+2022-06-19 15:15:16,732 ERROR frappe New Exception collected with id: 2022-06-19 15:15:15.792477-127.0.0.1-5bf
+Site: testsite3.com
+Form Dict: {'doctype': 'MyUsers', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2022-06-19 15:16:27,504 ERROR frappe New Exception collected with id: 2022-06-19 15:16:26.910150-127.0.0.1-ce2
+Site: testsite3.com
+Form Dict: {'doctype': 'MyUsers', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2022-06-19 15:17:10,254 ERROR frappe New Exception collected with id: 2022-06-19 15:17:09.149363-127.0.0.1-494
+Site: testsite3.com
+Form Dict: {'doctype': 'MyUsers', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2022-06-21 09:02:03,307 ERROR frappe New Exception collected with id: 2022-06-21 09:02:00.369968-127.0.0.1-846
+Site: testsite3.com
+Form Dict: {'sid': '15924934e675d16999b2e1f79f69ad3c5a67191589d5fa9d87b0a8d8'}
+2022-06-21 09:02:03,228 ERROR frappe New Exception collected with id: 2022-06-21 09:02:00.512002-127.0.0.1-555
+Site: testsite3.com
+Form Dict: {'sid': '15924934e675d16999b2e1f79f69ad3c5a67191589d5fa9d87b0a8d8'}

@@ -1,0 +1,21 @@
+2022-06-19 15:15:16,732 ERROR frappe New Exception collected with id: 2022-06-19 15:15:15.792477-127.0.0.1-5bf
+Site: testsite3.com
+Form Dict: {'doctype': 'MyUsers', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2022-06-19 15:16:27,504 ERROR frappe New Exception collected with id: 2022-06-19 15:16:26.910150-127.0.0.1-ce2
+Site: testsite3.com
+Form Dict: {'doctype': 'MyUsers', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2022-06-19 15:17:10,254 ERROR frappe New Exception collected with id: 2022-06-19 15:17:09.149363-127.0.0.1-494
+Site: testsite3.com
+Form Dict: {'doctype': 'MyUsers', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2022-06-21 09:02:03,307 ERROR frappe New Exception collected with id: 2022-06-21 09:02:00.369968-127.0.0.1-846
+Site: testsite3.com
+Form Dict: {'sid': '15924934e675d16999b2e1f79f69ad3c5a67191589d5fa9d87b0a8d8'}
+2022-06-21 09:02:03,307 ERROR frappe New Exception collected with id: 2022-06-21 09:02:00.369968-127.0.0.1-846
+Site: testsite3.com
+Form Dict: {'sid': '15924934e675d16999b2e1f79f69ad3c5a67191589d5fa9d87b0a8d8'}
+2022-06-21 09:02:03,228 ERROR frappe New Exception collected with id: 2022-06-21 09:02:00.512002-127.0.0.1-555
+Site: testsite3.com
+Form Dict: {'sid': '15924934e675d16999b2e1f79f69ad3c5a67191589d5fa9d87b0a8d8'}
+2022-06-21 09:02:03,228 ERROR frappe New Exception collected with id: 2022-06-21 09:02:00.512002-127.0.0.1-555
+Site: testsite3.com
+Form Dict: {'sid': '15924934e675d16999b2e1f79f69ad3c5a67191589d5fa9d87b0a8d8'}
